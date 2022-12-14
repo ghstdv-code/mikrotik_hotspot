@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiquidFire Hotspot</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post" style="display:none">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="/md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <div class="wrapper glow">
+        <header>
+            <div class="logo">
+                <img src="./images/logo.png" alt="">
+            </div>
+        </header>
+
+        <div class="client-info">
+            <p><span>IP:</span> $(ip)</p>
+            <p><span>MAC:</span> $(mac)</p>
+        </div>
+
+        <div class="title-text">
+            <div class="title voucher active" onclick="voucher()">Voucher</div>
+            <div class="title long-term" onclick="member()">Login</div>
+        </div>
+
+
+        <div class="form-container">
+            <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif)>
+
+                <input type="hidden" name="dst" value="$(link-orig)" />
+                <input type="hidden" name="popup" value="true" />
+
+                <h5 class="$(if error)alert$(endif)">
+                    $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')
+                    <br />Free trial available, <a
+                        href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click
+                        here</a>.$(endif) $(endif) $(if error)$(error)$(endif)
+                </h5>
+
+                <input id="uname" name="username" type="text" value="$(username)" placeholder="Enter voucher code"
+                    required>
+
+                <input id="pw" type="hidden" name="password" placeholder="Password" style="display: none" required>
+
+                <input type="submit" value="Connect">
+
+            </form>
+
+            <div class="separator"></div>
+            <div class="rates">
+                <button onclick="showRates()">Promo Rates</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal">
+        <div class="card">
+            <header>
+                <h3>Promo Rates</h3>
+            </header>
+            <div class="container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="price">Php 5.00</td>
+                            <td>3 hours, upto 3mbps</td>
+                        </tr>
+                        <tr>
+                            <td class="price">Php 10.00</td>
+                            <td>10 hours, upto 6mbps valid for 2 days</td>
+                        </tr>
+                        <tr>
+                            <td class="price">Php 50.00</td>
+                            <td>52 hours, upto 6mbps valid for 6 days</td>
+                        </tr>
+                        <tr>
+                            <td class="price">Php 250.00</td>
+                            <td>Unlimited, upto 10mbps valid for 30 days</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="w3-container w3-teal">
+                <button onclick="closeModal()" class="modal-exit">Exit</button>
+            </footer>
+        </div>
+    </div>
+
+    <footer>
+        <p>LiquidFire 1.7 &copy; 2022 All Rights Reserved</p>
+        <!-- <p>Developer: Gernel Esguerra</p> -->
+    </footer>
+
+
+    <script type="text/javascript">
+
+        document.login.username.focus();
+
+        var username = document.login.username;
+        var password = document.login.password;
+
+
+        // set password = username
+        // function setpass() {
+        //     var user = username.value
+        //     password.value = user;
+        // }
+
+        // username.onchange = setpass;
+
+        function voucher() {
+            username.focus();
+            //  username.onchange = setpass;
+            password.type = "hidden";
+        }
+
+        // change to member mode
+        function member() {
+            username.focus();
+            // username.onchange = "";
+            password.type = "password";
+        }
+
+        function showRates() {
+            document.querySelector('.modal').style.display = 'block';
+        }
+        function closeModal() {
+            document.querySelector('.modal').style.display = 'none';
+        }
+    </script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

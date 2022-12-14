@@ -1,0 +1,81 @@
+<html>
+
+<head>
+	<title>LiquidFire Hotspot > Logout</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="expires" content="-1">
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+	<link rel="stylesheet" href="./css/style.css">
+
+	<style>
+		.container h3 {
+			margin-bottom: 15px;
+			text-align: center;
+			color: #fa4299;
+		}
+	</style>
+</head>
+
+<body>
+
+	<script language="JavaScript">
+
+		function openLogin() {
+		if (window.name != 'hotspot_logout') return true;
+		open('$(link-login)', '_blank', '');
+		window.close();
+		return false;
+		}
+	
+	</script>
+	<div class="wrapper glow">
+		
+
+		<div class="container">
+			<h3>Your internet connection is inactive!</h3>
+			<table>
+				<tr>
+					<td>User ID</td>
+					<td>$(username)</td>
+				</tr>
+				<tr>
+					<td>IP Address</td>
+					<td>$(ip)</td>
+				</tr>
+				<tr>
+					<td>MAC Address</td>
+					<td>$(mac)</td>
+				</tr>
+
+				<!-- <tr>
+						<td>Active Time</td>
+						<td>$(uptime)</td>
+					</tr> -->
+
+				$(if session-time-left)
+				<tr>
+					<td>Time Left</td>
+					<td>$(session-time-left)</td>
+				</tr>
+				$(endif)
+				<!-- <tr>
+						<td>Upload/Download:</td>
+						<td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+					</tr> -->
+			</table>
+		</div>
+
+		<form action="$(link-login)" name="login" onSubmit="return openLogin()">
+			<input type="submit" value="Resume">
+		</form>
+
+	</div>
+
+	<footer>
+		<p>LiquidFire 1.7 &copy; 2022 All Rights Reserved</p>
+		<!-- <p>Developer: Gernel Esguerra</p> -->
+	</footer>
+</body>
+
+</html>
