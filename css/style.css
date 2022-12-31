@@ -10,13 +10,72 @@
     font-family: Poppins;
 }
 
-body
-{
+/* For desktop: */
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+body {
     background-color: #292929;
     /* background: -webkit-linear-gradient(left, #a445b2, #fa4299); */
     min-height: 100vh;
     /* height: 100%; */
-    display: flex;
+    display: grid;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -26,16 +85,17 @@ body
 .wrapper {
     margin: 10% auto 0;
     position: relative;
-    width: 390px;
+    width: 720px;
     background: #1E1E1E;
     /* box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1); */
     border-radius: 5px;
     padding: 30px;
     border: 1px solid #131313;
-
+    display: table;
 }
 
-.glow::before, .glow::after{
+.glow::before,
+.glow::after {
     content: '';
     position: absolute;
     left: -5px;
@@ -49,20 +109,20 @@ body
     animation: runlights 20s linear infinite;
 }
 
-.glow::after{
+.glow::after {
     filter: blur(40px);
 }
 
-@keyframes runlights{
-    0%{
+@keyframes runlights {
+    0% {
         background-position: 0 0;
     }
 
-    50%{
+    50% {
         background-position: 400% 0;
     }
 
-    100%{
+    100% {
         background-position: 0 0;
     }
 }
@@ -87,15 +147,44 @@ header .logo {
     margin: 0 auto;
 }
 
-.wrapper .client-info{
+.wrapper .client-info {
+    text-align: center;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     font-size: 0.8em;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     color: #fa4299;
+    gap: 10px;
 }
 
-.client-info p span{
+.client-info .info-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-content img, .btn img{
+    width: 20px;
+    height: 20px;
+}
+
+
+/* .wrapper .head-main{
+    padding-right: 15px;
+} */
+
+.wrapper .body-main{
+    border-left: 2px solid grey;
+    padding-left: 20px;
+    padding-bottom: 0;
+}
+
+.client-info p{
+    margin-left: 5px;
+}
+
+.client-info p span {
     font-weight: 600;
 }
 
@@ -124,6 +213,30 @@ header .logo {
     border-radius: 0 10px 10px 0;
 }
 
+.update{
+    color: #FED049;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+
+.update p span{
+    font-weight: bold;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+
+
 /* 
 .wrapper .form-container {
     width: 100%;
@@ -139,7 +252,8 @@ form h5 {
 }
 
 form input,
-.modal-exit, .rates button {
+.modal-exit,
+.rates button {
     margin: 10px 0;
     height: 50px;
     /* height: 100%; */
@@ -249,17 +363,18 @@ form input[type="submit"]:hover,
 }
 
 
-.container .item{
+.container .item {
     color: white;
     margin-bottom: 15px;
 }
 
-.item.item-frame{
+
+.item.item-frame {
     /* border: 2px solid lightgrey; */
     text-align: center;
 }
 
-.item-frame p{
+.item-frame p {
     padding: 3px;
     font-size: 0.8em;
     background-color: #0099ff;
@@ -268,7 +383,7 @@ form input[type="submit"]:hover,
     border-bottom: none;
 }
 
-.item-frame h6{
+.item-frame h6 {
     font-size: 0.9em;
     padding: 15px 0;
     border-radius: 0 0 5px 5px;
@@ -277,7 +392,7 @@ form input[type="submit"]:hover,
     background-color: #2e2b2b;
 }
 
-.container table{
+.container table {
     width: 100%;
     color: #fff;
 }
@@ -306,23 +421,34 @@ td.price {
     padding: 0px 10px 5px 10px;
 }
 
-.alert{
+.alert {
     color: #892631;
 }
 
-footer{
+footer {
     margin: 20px;
     text-align: center;
     color: white;
     font-size: 0.8em;
 }
 
-@media (max-width:576px){
-    .wrapper{
-        width: 350px;
+@media (max-width:760px) {
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    .wrapper {
+        width: 90%;
+        display: block;
         /* margin-top: -20px; */
     }
-    .modal .card{
-        width: 330px;
+
+    .wrapper .body-main{
+        border-left: none;
+        padding-left: 15px;
+    }
+
+    .modal .card {
+        width: 80%;
     }
 }

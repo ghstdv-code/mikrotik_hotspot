@@ -29,75 +29,106 @@
 			width: 100%;
 		}
 
-		/* .wrapper{
-			margin: 30% auto 0;
-		} */
+		@media (max-width: 760px) {
+			.wrapper {
+				width: 90% !important;
+				display: block !important;
+				/* margin-top: -20px; */
+			}
+		}
 	</style>
 </head>
 
 <body>
 	<div class="wrapper glow">
 
-		<h3 class="stats">Status</h3>
-		<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
-			<div class="container">
+		<section class="head-main col-6">
+            <header>
+                <div class="logo">
+                    <img src="./images/logo.png" alt="">
+                </div>
+            </header>
 
-				<div class="item item-frame">
-					<p>Voucher code</p>
-					<h6>$(username)</h6>
-				</div>
+			<div class="client-info">
+                <div class="info-content">
+                    <img src="./images/ip.png" alt="IP">
+                    <p>$(ip)</p>
+                </div>
+                <!-- <p><span>IP:</span> $(ip)</p> -->
+                <div class="info-content">
+                    <img src="./images/mac.png" alt="IP">
+                    <p>$(mac)</p>
+                </div>
+            </div>
 
-				<div class="item item-frame">
-					<p>IP Address</p>
-					<h6>$(ip)</h6>
-				</div>
+            <div class="update blink">
+                <p><span>Notice: </span>LiquidFire WIFI will be rename to LiquidFire Hotspot. Please re-login your voucher. Thank You</p>
+            </div>
+			
+        </section>
+		<section class="body-main col-6">
 
-				<div class="item item-frame">
-					<p>MAC Address</p>
-					<h6>$(mac)</h6>
-				</div>
+			<!-- <h3 class="stats">Status</h3> -->
+			<form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+				<div class="container">
 
-				<div class="item item-frame">
-					<p>Upload</p>
-					<h6>$(bytes-in-nice)</h6>
-				</div>
+					<div class="item item-frame">
+						<p>Voucher code</p>
+						<h6>$(username)</h6>
+					</div>
 
-				<div class="item item-frame">
-					<p>Download</p>
-					<h6>$(bytes-out-nice)</h6>
-				</div>
+					<!-- <div class="item item-frame">
+						<p>IP Address</p>
+						<h6>$(ip)</h6>
+					</div> -->
 
-				$(if session-time-left)
-				<div class="item item-frame">
-					<p>Time Left</p>
-					<h6>$(session-time-left)</h6>
-				</div>
-				$(else)
+					<!-- <div class="item item-frame">
+						<p>MAC Address</p>
+						<h6>$(mac)</h6>
+					</div> -->
 
-				<div class="item item-frame">
-					<p>Active Time</p>
-					<h6>$(uptime)</h6>
+					<div class="item item-frame">
+						<p>Upload</p>
+						<h6>$(bytes-in-nice)</h6>
+					</div>
+
+					<div class="item item-frame">
+						<p>Download</p>
+						<h6>$(bytes-out-nice)</h6>
+					</div>
+
+					$(if session-time-left)
+					<div class="item item-frame">
+						<p>Time Left</p>
+						<h6>$(session-time-left)</h6>
+					</div>
+					$(else)
+
+					<div class="item item-frame">
+						<p>Active Time</p>
+						<h6>$(uptime)</h6>
+					</div>
+					$(endif) $(if blocked == 'yes')
+					<div class="item item-frame">
+						<p>Status</p>
+						<h6><a href="$(link-advert)" target="hotspot_advert">Advertisement required</a></h6>
+					</div>
+					$(elif refresh-timeout)
+					<div class="item item-frame">
+						<p>Status Refresh</p>
+						<h6>$(refresh-timeout)</h6>
+					</div>
 				</div>
-				$(endif) $(if blocked == 'yes')
-				<div class="item item-frame">
-					<p>Status</p>
-					<h6><a href="$(link-advert)" target="hotspot_advert">Advertisement required</a></h6>
-				</div>
-				$(elif refresh-timeout)
-				<div class="item item-frame">
-					<p>Status Refresh</p>
-					<h6>$(refresh-timeout)</h6>
-				</div>
-			</div>
-<!-- 
-			$(if login-by-mac != 'yes')user manager link. if user manager resides on other router, replace $(hostname) by its address
+				<!-- $(if login-by-mac != 'yes')user manager link. if user manager resides on other router, replace $(hostname) by its address
 <button onclick="document.location='http://$(hostname)/user?subs='; return false;">status</button>
 end of user manager link -->
-			<input type="submit" value="Pause Time">
-			<!-- $(endif) -->
-		</form>
-	</div>
+				<!-- <input type="submit" value="Pause Time"> -->
+				<!-- $(endif) -->
+			</form>
 
+		</section>
+
+	</div>
 
 	<!-- <footer>
 		<p>LiquidFire 1.4 &copy; 2022 All Rights Reserved</p>

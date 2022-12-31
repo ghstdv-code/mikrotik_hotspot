@@ -29,51 +29,68 @@
     </script>
     $(endif)
     <div class="wrapper glow">
-        <header>
-            <div class="logo">
-                <img src="./images/logo.png" alt="">
+        <section class="head-main col-6">
+            <header>
+                <div class="logo">
+                    <img src="./images/logo.png" alt="">
+                </div>
+            </header>
+
+            <div class="client-info">
+                <div class="info-content">
+                    <img src="./images/ip.png" alt="IP">
+                    <p>$(ip)</p>
+                </div>
+                <!-- <p><span>IP:</span> $(ip)</p> -->
+                <div class="info-content">
+                    <img src="./images/mac.png" alt="IP">
+                    <p>$(mac)</p>
+                </div>
             </div>
-        </header>
 
-        <div class="client-info">
-            <p><span>IP:</span> $(ip)</p>
-            <p><span>MAC:</span> $(mac)</p>
-        </div>
-
-        <div class="title-text">
-            <div class="title voucher active" onclick="voucher()">Voucher</div>
-            <div class="title long-term" onclick="member()">Login</div>
-        </div>
-
-
-        <div class="form-container">
-            <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
-                $(endif)>
-
-                <input type="hidden" name="dst" value="$(link-orig)" />
-                <input type="hidden" name="popup" value="true" />
-
-                <h5 class="$(if error)alert$(endif)">
-                    $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')
-                    <br />Free trial available, <a
-                        href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click
-                        here</a>.$(endif) $(endif) $(if error)$(error)$(endif)
-                </h5>
-
-                <input id="uname" name="username" type="text" value="$(username)" placeholder="Enter voucher code"
-                    required>
-
-                <input id="pw" type="hidden" name="password" placeholder="Password" style="display: none" required>
-
-                <input type="submit" value="Connect">
-
-            </form>
-
-            <div class="separator"></div>
-            <div class="rates">
-                <button onclick="showRates()">Promo Rates</button>
+            <div class="update blink">
+                <p><span>Notice: </span>LiquidFire WIFI will be rename to LiquidFire Hotspot. Please re-login your voucher. Thank You</p>
             </div>
-        </div>
+        </section>
+        <section class="body-main col-6">
+
+            <div class="title-text">
+                <div class="title voucher active" onclick="voucher()">Voucher</div>
+                <div class="title long-term" onclick="member()">Login</div>
+            </div>
+
+
+            <div class="form-container">
+                <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                    $(endif)>
+
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+
+                    <h5 class="$(if error)alert$(endif)">
+                        $(if error == "")Please log in to use the internet hotspot service $(if trial == 'yes')
+                        <br />Free trial available, <a
+                            href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click
+                            here</a>.$(endif) $(endif) $(if error)$(error)$(endif)
+                    </h5>
+
+                    <input id="uname" name="username" type="text" value="$(username)" placeholder="Enter voucher code"
+                        required>
+
+                    <input id="pw" type="hidden" name="password" placeholder="Password" style="display: none" required>
+                    <div class="btn">
+                 
+                        <input type="submit" value="Connect">
+                    </div>
+                 
+
+                </form>
+
+                <div class="separator"></div>
+                <div class="rates">
+                    <button onclick="showRates()">Promo Rates</button>
+                </div>
+            </div>
     </div>
 
     <div class="modal">
@@ -92,11 +109,11 @@
                     <tbody>
                         <tr>
                             <td class="price">Php 5.00</td>
-                            <td>3 hours, upto 3mbps</td>
+                            <td>3 hours, upto 10mbps</td>
                         </tr>
                         <tr>
                             <td class="price">Php 10.00</td>
-                            <td>10 hours, upto 6mbps valid for 2 days</td>
+                            <td>10 hours, upto 10mbps valid for 2 days</td>
                         </tr>
                         <tr>
                             <td class="price">Php 50.00</td>
@@ -120,6 +137,7 @@
         <!-- <p>Developer: Gernel Esguerra</p> -->
     </footer>
 
+    </section>
 
     <script type="text/javascript">
 
@@ -130,23 +148,23 @@
 
 
         // set password = username
-        // function setpass() {
-        //     var user = username.value
-        //     password.value = user;
-        // }
+        function setpass() {
+            var user = username.value
+            password.value = user;
+        }
 
-        // username.onchange = setpass;
+        username.onchange = setpass;
 
         function voucher() {
             username.focus();
-            //  username.onchange = setpass;
+            username.onchange = setpass;
             password.type = "hidden";
         }
 
         // change to member mode
         function member() {
             username.focus();
-            // username.onchange = "";
+            username.onchange = "";
             password.type = "password";
         }
 
